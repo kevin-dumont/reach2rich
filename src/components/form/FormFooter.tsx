@@ -5,7 +5,6 @@ import { useForm } from "@/contexts/FormContext";
 export function FormFooter() {
   const {
     loading,
-    nextStep,
     previousStep,
     regenerateStep,
     isLastStep,

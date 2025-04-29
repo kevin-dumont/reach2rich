@@ -8,7 +8,6 @@ interface ResultStepProps extends StepProps {
 
 export function ResultStep({
   formData,
-  onChange,
   stepNumber,
   fieldName,
 }: ResultStepProps) {
