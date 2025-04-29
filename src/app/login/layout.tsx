@@ -1,11 +1,6 @@
 "use client";
 
 import { Inter } from "next/font/google";
-
-import { FormProvider } from "@/contexts/FormContext";
-import { Toaster } from "@/components/ui/sonner";
-
-import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,10 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className)}>
-        <FormProvider>{children}</FormProvider>
-        <Toaster />
-      </body>
+      <body className={cn(inter.className, "bg-gray-50")}>{children}</body>
     </html>
   );
 }
