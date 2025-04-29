@@ -19,7 +19,7 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (!user) {
-    if (pathname === "/login") {
+    if (pathname === "/login" || pathname === "/auth-callback") {
       return response;
     }
     return redirect("/login");
