@@ -1,9 +1,9 @@
 "use server";
 
+import { z } from "zod";
+import { merge } from "@/lib/objects/merge";
 import { runPromptAndSaveOffer } from "@/services/offer/run-prompt-and-save-offer";
 import { Offer, OfferError } from "@/types/offer";
-import { RecursivePartial } from "@/types/utility";
-import { z } from "zod";
 
 const stepFiveSchema = z.object({
   notIncluded: z
@@ -26,9 +26,7 @@ export async function generateStepFive(offer: Offer, formData: FormData) {
     };
   }
 
-  const inputs: RecursivePartial<Offer> = {
-    offerJson: { generated: { notIncluded } },
-  };
+  const inputs = merge([offer, { offerJson: { generated: { notIncluded } } }]);
 
   return runPromptAndSaveOffer(
     getDoneForYouPrompt(inputs),
@@ -38,7 +36,7 @@ export async function generateStepFive(offer: Offer, formData: FormData) {
   );
 }
 
-const getDoneForYouPrompt = (offer: RecursivePartial<Offer>) => {
+const getDoneForYouPrompt = (offer: Offer) => {
   return `Prends le rôle d'un expert en copywriting qui utilise les dernières techniques de rédaction et au maximum du state of art.
 
 J'ai créé une landing page sur laquelle je vais renvoyer mon audience pour les convertir.
@@ -87,7 +85,7 @@ Voici un exemple qui correspond parfaitement à la structure attendue entre << e
 >>
 
 FORMAT ATTENDU :
-Tu ne dois pas mettre d'émojis.
-Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
-`;
+- Tu ne dois pas mettre d'émojis.
+- Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
+- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre << et >>`;
 };

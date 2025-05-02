@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["@vitest/browser/providers/playwright"],
     "plugins": [
       {
         "name": "next"

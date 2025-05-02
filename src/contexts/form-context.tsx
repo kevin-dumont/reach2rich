@@ -27,6 +27,8 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
 
       const offer = await fetchOfferData(id as string);
 
+      console.log("offer", offer);
+
       setOffer(offer);
       setIsLoading(false);
     };

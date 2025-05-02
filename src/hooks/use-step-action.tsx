@@ -11,8 +11,11 @@ export const useStepAction = <T extends OfferError<Record<string, string[]>>>(
 
     const result = await action(offer, formData);
 
+    console.log("result?.updatedOffer", result?.updatedOffer);
+
     if (result?.updatedOffer) {
       setStep((s) => s + 1);
+
       setOffer(result?.updatedOffer);
     }
 

@@ -1,9 +1,9 @@
 "use server";
 
+import { z } from "zod";
+import { merge } from "@/lib/objects/merge";
 import { runPromptAndSaveOffer } from "@/services/offer/run-prompt-and-save-offer";
 import { Offer, OfferError } from "@/types/offer";
-import { RecursivePartial } from "@/types/utility";
-import { z } from "zod";
 
 const stepNineSchema = z.object({
   painPoints: z
@@ -29,9 +29,7 @@ export async function generateStepNine(
     };
   }
 
-  const inputs: RecursivePartial<Offer> = {
-    offerJson: { generated: { painPoints } },
-  };
+  const inputs = merge([offer, { offerJson: { generated: { painPoints } } }]);
 
   return runPromptAndSaveOffer(
     getFillTheFormVsDoNothing(inputs),
@@ -41,7 +39,7 @@ export async function generateStepNine(
   );
 }
 
-function getFillTheFormVsDoNothing(offer: RecursivePartial<Offer>) {
+function getFillTheFormVsDoNothing(offer: Offer) {
   return `Tu es un expert en copywriting spécialisé dans les pages de vente à haute conversion.  
 Je vais te donner un bloc de contenu avec des éléments à exploiter entre ### et ###.
 

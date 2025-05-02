@@ -1,9 +1,9 @@
 "use server";
 
+import { z } from "zod";
+import { merge } from "@/lib/objects/merge";
 import { runPromptAndSaveOffer } from "@/services/offer/run-prompt-and-save-offer";
 import { Offer, OfferError } from "@/types/offer";
-import { RecursivePartial } from "@/types/utility";
-import { z } from "zod";
 
 export type StepTwoResponse = OfferError<{
   cv?: string[];
@@ -32,9 +32,10 @@ export async function generateStepTwo(
     };
   }
 
-  const inputs: RecursivePartial<Offer> = {
-    offerJson: { userInput: { cv }, generated: { steps: generatedSteps } },
-  };
+  const inputs = merge([
+    offer,
+    { offerJson: { userInput: { cv }, generated: { steps: generatedSteps } } },
+  ]);
 
   return runPromptAndSaveOffer(
     getWhoAmIPrompt(inputs),
@@ -44,22 +45,37 @@ export async function generateStepTwo(
   );
 }
 
-const getWhoAmIPrompt = (offer: RecursivePartial<Offer>) => {
-  return `Tu es un expert en storytelling. Tu sais parfaitement identifier les points forts d'une personne et les éléments qui rendent légitime et crédible une personne par rapport à une offre.
-
+const getWhoAmIPrompt = (offer: Offer) => {
+  return `TON RÔLE :
+Tu es un expert en storytelling. Tu sais parfaitement identifier les points forts d'une personne et les éléments qui rendent légitime et crédible une personne par rapport à une offre.
 Ton rôle sera d'identifier les éléments les plus pertinents de mon CV liés à l'offre que je vais te partager.
 
-Tu dois rédiger une description concise, percutante et sous forme de checklist avec un caractère spécial devant chaque élément : ✦
+INSTRUCTIONS :
+Tu vas devoir identifier et rédiger les éléments de légitimité de l'offre.  
+Les personnes qui liront cet élément doivent se dire "Cette personne est la bonne personne pour résoudre mon problème".
 
-Je vais te donner un exemple de ce à quoi ça doit ressembler.  
-Tu dois impérativement faire attention à ne pas reprendre les éléments de cet exemple.  
-Tu dois juste t'inspirer de sa structure et du ton employé.
+1. Le retour généré doit commencer par : "Je m'appelle [Prénom Nom] et je suis [votre fonction], spécialisé(e) en [votre expertise]".
+Exemple : "Je m'appelle Kevin Dumont, et j'aide les développeurs freelance à trouver des clients grâce à LinkedIn."
 
-Je vais te donner l'exemple entre /// et ///. Ça doit parfaitement correspondre à la structure attendue.
-Je vais te donner mon CV entre < et >.  
-Je vais te donner mon offre entre [ et ].
+2. Ensuite, tu saute une ligne et tu rédige une phrase percutante qui résume ton parcours et ton expertise, avec le plus possible de preuves sociales.
+Exemple : "En moins d'un an, j'ai transformé LinkedIn en machine à clients pour les devs."
 
-///
+3. Ensuite, tu dois rédiger une description concise, percutante et sous forme de checklist avec un tiret "-" devant chaque élément :
+Exemple d'élément de la liste :  
+"- J'ai accompagné +180 SaaS (dont Airbnb, Stripe, Shopify, etc.) dans leur marketing digital et boosté leurs ventes de 58% en moyenne."
+
+4. Tu passera une ligne puis tu rédigera une sorte de conclusion pour mettre en valeur le fait que tu es la personne qu'ils cherchent.
+Exemple de conclusion :  
+"En bref, je connais parfaitement les enjeux des freelances tech pour avoir été moi-même dans leurs chaussures, et je les aide à attirer les bons clients grâce à du contenu qui convertit."
+
+5. Je vais te donner un exemple complet entre <<< et >>>. Ça doit parfaitement correspondre parfaitement à la structure attendue.
+
+6. Je vais te donner mon CV entre ((( et ))).  
+
+7. Je vais te donner mon offre actuelle, pour laquelle tu dois mettre en valeur mon "Qui suis-je", entre [[[ et ]]]
+
+DONNÉES :
+<<<
 Je m'appelle Kevin Dumont, et j'aide les développeurs freelance à trouver des clients grâce à LinkedIn.
 
 En moins d'un an, j'ai transformé LinkedIn en machine à clients pour les devs.
@@ -75,31 +91,30 @@ En moins d'un an, j'ai transformé LinkedIn en machine à clients pour les devs.
 - Je maîtrise le copywriting et la vente pour transformer la visibilité en chiffre d'affaires concret.
 
 En bref, je connais parfaitement les enjeux des freelances tech pour avoir été moi-même dans leurs chaussures, et je les aide à attirer les bons clients grâce à du contenu qui convertit.
-///
+>>>
 
-<${offer.offerJson?.userInput?.cv}>
+(((
+${offer.offerJson?.userInput?.cv}
+)))
 
-[${offer.offerJson?.userInput?.steps}]
+[[[
+L'offre :
+${offer.offerJson?.userInput?.offer}
+
+Le déroulé de l'offre :
+${offer.offerJson?.userInput?.steps}
+]]]
 
 FORMAT ATTENDU :
-Tu ne dois pas utiliser d'émojis.  
-Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
-Tu dois lister au moins 10 points pertinents.  
-Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre /// et ///.  
-
-Tu dois principalement donner des chiffres pour appuyer tes propos.  
-Tu dois faire des phrases courtes, concises et percutantes, sans manquer d'informations.  
-Tu dois commencer les phrases par des chiffres.  
-Reste le plus factuel possible en fonction de mon CV.
-
-Je te rappelle l'objectif : identifier et rédiger les éléments de légitimité de l'offre.  
-Les personnes qui liront cet élément doivent se dire "Cette personne est la bonne personne".
-
-Commence la checklist par :  
-Je m'appelle [Prénom NOM] et je suis [votre fonction], spécialisé(e) en [votre expertise].
-Par exemple :  
-"Je m'appelle Marie Dupont et je suis consultante en marketing digital, spécialisée dans la stratégie de contenu pour les entreprises technologiques."
-
-Rappelle-toi que mon offre actuelle pour laquelle tu dois mettre en valeur mon "Qui suis-je" et la suite des éléments est la suivante :  
-${offer.offerJson?.userInput?.offer}`;
+- Tu ne dois pas utiliser d'émojis.  
+- Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
+- Tu dois t'inspirer de la structure de l'exemple fourni entre <<< et >>> et du ton employé.
+- Tu dois impérativement faire attention à ne pas reprendre les éléments de l'exemple fourni entre <<< et >>>, seulement t'inspirer.  
+- Tu dois lister au moins 10 points pertinents.  
+- Tu dois principalement donner des chiffres pour appuyer tes propos, si c'est possible.  
+- Tu dois faire des phrases courtes, concises et percutantes, sans manquer d'informations.  
+- Tu dois commencer les phrases par des chiffres quand c'est possible.
+- Reste le plus factuel possible en fonction de mon CV, n'invente pas.
+- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre <<< et >>>.  
+`;
 };

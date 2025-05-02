@@ -12,7 +12,7 @@ export const runPromptAndSaveOffer = async <T extends Record<string, string[]>>(
   try {
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "gpt-4-turbo-preview",
+      model: "gpt-4o",
     });
 
     const openAiResponse = completion.choices[0].message.content;
@@ -41,14 +41,16 @@ export const runPromptAndSaveOffer = async <T extends Record<string, string[]>>(
       },
     };
 
-    console.log("updatedOffer", updatedOffer);
+    const updatedOfferResult = await updateOffer(updatedOffer);
 
-    await updateOffer(updatedOffer);
+    if (!updatedOfferResult) {
+      return { error: "Erreur lors de la mise à jour de l'offre" };
+    }
 
     return {
       error: undefined,
       inputErrors: undefined,
-      updatedOffer: offer,
+      updatedOffer: updatedOfferResult,
     };
   } catch {
     return {

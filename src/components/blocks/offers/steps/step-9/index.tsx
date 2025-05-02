@@ -38,8 +38,9 @@ export function StepNine() {
 
         <FormFooter
           pending={pending}
+          onPreviousClick={() => setStep(8)}
           isGenerated={!!offer?.offerJson?.generated?.doNothing}
-          goToNextStep={() => setStep(8)}
+          goToNextStep={() => setStep(10)}
         />
       </div>
     </form>

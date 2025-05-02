@@ -50,8 +50,9 @@ export function StepTen() {
 
         <FormFooter
           pending={pending}
+          onPreviousClick={() => setStep(9)}
           isGenerated={!!offer?.offerJson?.generated?.fillTheForm}
-          goToNextStep={() => setStep(8)}
+          goToNextStep={() => undefined}
         />
       </div>
     </form>

@@ -40,6 +40,7 @@ export function StepSix() {
 
         <FormFooter
           pending={pending}
+          onPreviousClick={() => setStep(5)}
           isGenerated={!!offer?.offerJson?.generated.notDoneForYou}
           goToNextStep={() => setStep(7)}
         />
