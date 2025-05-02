@@ -30,14 +30,14 @@ export const FormFooter = ({
       <div className="flex gap-2">
         {isGenerated && (
           <>
-            <Button
+            {/* <Button
               type="submit"
               variant="outline"
               disabled={pending}
               loading={pending}
             >
               Régénérer
-            </Button>
+            </Button> */}
 
             <Button onClick={goToNextStep} disabled={pending}>
               Suivant
