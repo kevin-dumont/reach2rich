@@ -110,7 +110,7 @@ export const createOffer = async (
   return mapOfferDTOToOffer(data);
 };
 
-export const deleteOffer = async (offerId: number) => {
+export const deleteOffer = async (offerId: string) => {
   const supabase = await createClient();
   const { error } = await supabase.from("offers").delete().eq("id", offerId);
 
@@ -122,7 +122,7 @@ export const deleteOffer = async (offerId: number) => {
   return true;
 };
 
-export const duplicateOffer = async (offerId: number) => {
+export const duplicateOffer = async (offerId: string) => {
   const supabase = await createClient();
   const { data: offer, error } = await supabase
     .from("offers")
@@ -154,7 +154,7 @@ export const duplicateOffer = async (offerId: number) => {
   return data;
 };
 
-export const renameOffer = async (offerId: number, newName: string) => {
+export const renameOffer = async (offerId: string, newName: string) => {
   const supabase = await createClient();
   const { error } = await supabase
     .from("offers")

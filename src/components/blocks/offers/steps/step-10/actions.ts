@@ -40,44 +40,55 @@ export async function generateStepTen(
 }
 
 function getFillTheFormVsDoNothing(offer: Offer) {
-  return `Tu es un expert en copywriting spécialisé dans les pages de vente à haute conversion.  
-Je vais te donner un bloc de contenu avec des éléments à exploiter entre ### et ###.
+  return `TON RÔLE :
+Tu es un expert en copywriting spécialisé dans les pages de vente à haute conversion.
 
-Ton objectif est de transformer ce contenu en une section intitulée :  
-⬇︎ Ne rien faire VS Remplir ce formulaire
+CONTEXTE :
+Je vais te donner un bloc de contenu avec des éléments à exploiter entre <<< et >>>.
+L'objectif à terme est de faire une section intitulée : "Si tu ne fais rien" et une autre intitulée : "Si tu remplis ce formulaire".
+Le but est de les mettre en opposition et inciter le lecteur à passer à l'action.
+Le bloc "Si tu ne fais rien" est déjà fait pour cette offre et est compris entre {{{ et }}}, tu dois faire le bloc "Si tu remplis ce formulaire".
 
-La partie "Ne rien faire" est déjà rédigée entre << et >> :
-<<
-${offer.offerJson?.generated?.doNothing}
->>
+INSTRUCTIONS :
+Ton objectif est de transformer le contenu entre <<< et >>> en une section intitulée : "Si tu remplis ce formulaire".
 
-Pour l'instant, on se concentrer sur le bloc "Si tu remplis ce formulaire" entre << et >> :
-<<<
+1. Reste simple, brut, direct.  
+2. Utilise des phrases concrètes, visuelles, réalistes.  
+3. Dans le bloc "Tu remplis ce formulaire", mets l'accent sur l'accès à une opportunité réelle.  
+4. Le contenu des phrases doit être un calcul de rentabilité de l'action pour le bloc "Tu remplis ce formulaire".
+5. Tu vas respecter le format suivant entre [[[ et ]]] :
+6. Tu dois appliquer ça à l'offre qui est entre <<< et >>>
+7. Tu trouveras un exemple complet de ce que je te demande entre ((( et ))) 
+
+DONNÉES :
+[[[
 ↓ Ligne 1  
 ↓ Ligne 2  
 ↓ Ligne 3  
 ↓ Ligne 4  
-✔︎ Ligne 5
+✔︎ Ligne 5  
 
-➜ Phrase finale douce, positive, désirable. Montre le bénéfice ultime.
->>>
+➜ Phrase finale positive, motivante, chiffrée. Doit inciter à l'action.
+]]]
 
-FORMAT ATTENDU :
-Tu ne dois pas mettre d'émojis.
-Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
+{{{
+${offer.offerJson?.generated?.doNothing}
+}}}
 
-Instructions :
-- Reste simple, brut, direct.  
-- Utilise des phrases concrètes, visuelles, réalistes.  
-- Dans le bloc "Tu ne fais rien", mets l'accent sur la perte de CA potentielle sous forme de calcul.  
-- Dans le bloc "Tu remplis ce formulaire", mets l'accent sur l'accès à une opportunité réelle.  
-- Saute une ligne entre les deux blocs.  
-- Pas d'émojis, pas de promesses floues, pas de blabla.  
-- Mets des points à la fin des phrases.  
-- Le contenu des phrases doit être un calcul de non rentabilité de l'inaction pour le bloc "Tu ne fais rien".  
-  L'inverse pour le bloc "Tu remplis ce formulaire".
+(((
+↓ On clarifie ton positionnement
+↓ Ton profil attire les bons clients
+↓ Tu publies du contenu qui convertit
+↓ Tu décroches des missions sous 2 à 3 mois
+✔︎ Tu construis un canal d’acquisition rentable
 
-###
+➜ Une mission peut rembourser l’accompagnement
+)))
+
+<<<
+Tu te reconnais là dedans ?
+${offer.offerJson?.generated?.painPoints}
+
 Qui suis-je ?
 ${offer.offerJson?.generated?.whoAmI}
 
@@ -101,8 +112,12 @@ ${offer.offerJson?.generated?.notDoneForYou}
 
 Les questions fréquentes :
 ${offer.offerJson?.generated?.FAQ}
+>>>
 
-Tu te reconnais là dedans ?
-${offer.offerJson?.generated?.painPoints}
-###`;
+FORMAT ATTENDU :
+- Pas d'émojis, pas de promesses floues, pas de blabla.  
+- Mets des points à la fin des phrases.  
+- Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
+- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre <<< et >>>.
+`;
 }

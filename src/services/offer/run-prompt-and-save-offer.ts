@@ -12,7 +12,7 @@ export const runPromptAndSaveOffer = async <T extends Record<string, string[]>>(
   try {
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "gpt-4o",
+      model: "gpt-4.1",
     });
 
     const openAiResponse = completion.choices[0].message.content;

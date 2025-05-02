@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { fetchOfferData } from "@/services/supabase/offers/offerRepository";
-
+import { redirect } from "next/navigation";
 export default async function ViewOfferPage({
   params,
 }: {
@@ -12,6 +12,10 @@ export default async function ViewOfferPage({
 }) {
   const { id } = await params;
   const offer = await fetchOfferData(id as string);
+
+  if (!offer?.offerJson?.generated?.fillTheForm) {
+    redirect(`/dashboard/offers/${id}/edit`);
+  }
 
   return (
     <Card className="col-span-8 p-6">

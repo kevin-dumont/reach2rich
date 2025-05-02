@@ -32,7 +32,7 @@ const CreateOfferModal: React.FC<CreateOfferModalProps> = ({
     const data = await createOffer(newOfferName, {});
 
     if (data) {
-      router.push(`/dashboard/offers/${data?.id}`);
+      router.push(`/dashboard/offers/${data?.id}/edit`);
 
       toast.success("Offre créée avec succès");
     } else {

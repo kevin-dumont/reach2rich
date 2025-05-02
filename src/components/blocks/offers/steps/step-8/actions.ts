@@ -46,10 +46,10 @@ const getPainPointsPrompt = (offer: RecursivePartial<Offer>) => {
 Tu es un expert copywriter.
 
 CONTEXTE :
-Je vais te donner un bloc de contenu contenant une landing pour une offre déjà rédigée entre <<< et >>>.
+Je suis en train de rédiger le copywriting d'une landing pour une offre, dont le contenu est entre <<< et >>>.
 
 INSTRUCTIONS :
-1. Étudie le contenu de l'offre que je vais te copier entre <<< et >>>.  
+1. Étudie le contenu de l'offre que j'ai déjà rédigé entre <<< et >>>.  
 2. Garde uniquement les éléments qui décrivent des situations concrètes, répétitives et pénibles que vit ma cible.  
 3. Reformule-les de manière percutante, brute, visuelle, sans enrobage.  
 4. Ajoute aussi leurs limites actuelles : excuses, tentatives échouées, blocages mentaux.  

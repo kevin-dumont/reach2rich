@@ -40,14 +40,29 @@ export async function generateStepNine(
 }
 
 function getFillTheFormVsDoNothing(offer: Offer) {
-  return `Tu es un expert en copywriting spécialisé dans les pages de vente à haute conversion.  
-Je vais te donner un bloc de contenu avec des éléments à exploiter entre ### et ###.
+  return `TON RÔLE :
+Tu es un expert en copywriting spécialisé dans les pages de vente à haute conversion.
 
-Ton objectif est de transformer ce contenu en une section intitulée :  
-⬇︎ Ne rien faire VS Remplir ce formulaire
+CONTEXTE :
+Je vais te donner un bloc de contenu avec des éléments à exploiter entre <<< et >>>.
+L'objectif à terme est de faire une section intitulée : "Si tu ne fais rien" et une autre intitulée : "Si tu remplis ce formulaire".
+Le but est de les mettre en opposition et inciter le lecteur à passer à l'action.
+On ne va pas le faire le bloc "Si tu remplis ce formulaire" pour l'instant, mais c'est pour te donner le contexte.
 
-Pour l'instant, on se concentrer sur le bloc "Si tu ne fais rien" entre << et >> :
-<<
+INSTRUCTIONS :
+Ton objectif est de transformer le contenu entre <<< et >>> en une section intitulée : "Si tu ne fais rien".
+
+1. Reste simple, brut, direct.  
+2. Utilise des phrases concrètes, visuelles, réalistes.  
+3. Dans le bloc "Tu ne fais rien", mets l'accent sur la perte de CA potentielle sous forme de calcul.  
+4. Le contenu des phrases doit être un calcul de non rentabilité de l'inaction pour le bloc "Tu ne fais rien".
+L'inverse pour le bloc "Tu remplis ce formulaire" qu'on fera plus tard.
+5. Tu va respecter le format suivant entre [[[ et ]]] :
+6. Tu dois appliuer ça à l'offre qui est entre <<< et >>>
+7. Tu trouveras un exemple complet de ce que je te demande entre ((( et ))) 
+
+DONNÉES :
+[[[
 ↓ Ligne 1  
 ↓ Ligne 2  
 ↓ Ligne 3  
@@ -55,24 +70,19 @@ Pour l'instant, on se concentrer sur le bloc "Si tu ne fais rien" entre << et >>
 ✘ Ligne 5  
 
 ➜ Phrase finale choc, brutale, chiffrée. Doit créer un électrochoc.
->>
+]]]
 
-FORMAT ATTENDU :
-Tu ne dois pas mettre d'émojis.
-Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
+(((
+↓ Tu continues à publier dans le vide
+↓ Ton profil reste invisible
+↓ Tu rates 1 à 2 missions par mois
+↓ À 400€/jour, tu perds 8000€/mois
+✘ En 3 mois, t’as perdu 24 000€
 
-Instructions :
-- Reste simple, brut, direct.  
-- Utilise des phrases concrètes, visuelles, réalistes.  
-- Dans le bloc "Tu ne fais rien", mets l'accent sur la perte de CA potentielle sous forme de calcul.  
-- Dans le bloc "Tu remplis ce formulaire", mets l'accent sur l'accès à une opportunité réelle.  
-- Saute une ligne entre les deux blocs.  
-- Pas d'émojis, pas de promesses floues, pas de blabla.  
-- Mets des points à la fin des phrases.  
-- Le contenu des phrases doit être un calcul de non rentabilité de l'inaction pour le bloc "Tu ne fais rien".  
-  L'inverse pour le bloc "Tu remplis ce formulaire".
+➜ À l’année, t’as perdu une Tesla Model S
+)))
 
-###
+<<<
 Qui suis-je ?
 ${offer.offerJson?.generated?.whoAmI}
 
@@ -99,5 +109,12 @@ ${offer.offerJson?.generated?.FAQ}
 
 Tu te reconnais là dedans ?
 ${offer.offerJson?.generated?.painPoints}
-###`;
+>>>
+
+FORMAT ATTENDU :
+- Pas d'émojis, pas de promesses floues, pas de blabla.  
+- Mets des points à la fin des phrases.  
+- Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
+- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre <<< et >>>.
+`;
 }

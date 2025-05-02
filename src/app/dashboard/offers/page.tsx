@@ -36,7 +36,7 @@ export default function ListeOffres() {
   const [offers, setOffers] = useState<Offer[]>([]);
   const [newOfferName, setNewOfferName] = useState("");
   const [loading, setLoading] = useState(true);
-  const [offerToDelete, setOfferToDelete] = useState<number | null>(null);
+  const [offerToDelete, setOfferToDelete] = useState<string | null>(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showRenameDialog, setShowRenameDialog] = useState(false);
   const [offerToRename, setOfferToRename] = useState<Offer | null>(null);
@@ -76,7 +76,7 @@ export default function ListeOffres() {
     setShowDeleteDialog(false);
   };
 
-  const handleDuplicateOffer = async (offerId: number) => {
+  const handleDuplicateOffer = async (offerId: string) => {
     const data = await duplicateOffer(offerId);
 
     if (data) {
@@ -136,11 +136,18 @@ export default function ListeOffres() {
             {offers.map((offer) => (
               <div key={offer.id} className="relative group">
                 <Link
-                  href={`/dashboard/offers/${offer.id}`}
+                  href={
+                    !!offer?.offerJson?.generated?.fillTheForm
+                      ? `/dashboard/offers/${offer.id}`
+                      : `/dashboard/offers/${offer.id}/edit`
+                  }
                   className="block h-full"
                 >
                   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow h-[140px]">
                     <h3 className="font-medium">{offer.name}</h3>
+                    {!offer?.offerJson?.generated?.fillTheForm && (
+                      <p className="text-sm text-gray-500 mt-1">Brouillon</p>
+                    )}
                   </div>
                 </Link>
                 <DropdownMenu>

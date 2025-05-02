@@ -47,50 +47,36 @@ export async function generateStepTwo(
 
 const getWhoAmIPrompt = (offer: Offer) => {
   return `TON RÔLE :
-Tu es un expert en storytelling. Tu sais parfaitement identifier les points forts d'une personne et les éléments qui rendent légitime et crédible une personne par rapport à une offre.
+Tu es un expert en storytelling et en copywriting. Tu sais parfaitement identifier les points forts d'une personne et les éléments qui rendent légitime et crédible une personne par rapport à une offre.
 Ton rôle sera d'identifier les éléments les plus pertinents de mon CV liés à l'offre que je vais te partager.
 
 INSTRUCTIONS :
 Tu vas devoir identifier et rédiger les éléments de légitimité de l'offre.  
 Les personnes qui liront cet élément doivent se dire "Cette personne est la bonne personne pour résoudre mon problème".
 
-1. Le retour généré doit commencer par : "Je m'appelle [Prénom Nom] et je suis [votre fonction], spécialisé(e) en [votre expertise]".
-Exemple : "Je m'appelle Kevin Dumont, et j'aide les développeurs freelance à trouver des clients grâce à LinkedIn."
-
-2. Ensuite, tu saute une ligne et tu rédige une phrase percutante qui résume ton parcours et ton expertise, avec le plus possible de preuves sociales.
-Exemple : "En moins d'un an, j'ai transformé LinkedIn en machine à clients pour les devs."
-
-3. Ensuite, tu dois rédiger une description concise, percutante et sous forme de checklist avec un tiret "-" devant chaque élément :
-Exemple d'élément de la liste :  
-"- J'ai accompagné +180 SaaS (dont Airbnb, Stripe, Shopify, etc.) dans leur marketing digital et boosté leurs ventes de 58% en moyenne."
-
-4. Tu passera une ligne puis tu rédigera une sorte de conclusion pour mettre en valeur le fait que tu es la personne qu'ils cherchent.
-Exemple de conclusion :  
-"En bref, je connais parfaitement les enjeux des freelances tech pour avoir été moi-même dans leurs chaussures, et je les aide à attirer les bons clients grâce à du contenu qui convertit."
-
-5. Je vais te donner un exemple complet entre <<< et >>>. Ça doit parfaitement correspondre parfaitement à la structure attendue.
-
-6. Je vais te donner mon CV entre ((( et ))).  
-
-7. Je vais te donner mon offre actuelle, pour laquelle tu dois mettre en valeur mon "Qui suis-je", entre [[[ et ]]]
+1. Tu dois être ultra direct.  
+2. Le retour généré doit respecter la même structure que l'exemple entre <<< et >>>
+3. Tu dois impérativement faire attention à ne pas reprendre les éléments de cet exemple.  
+4. Tu dois juste t'inspirer de sa structure et du ton employé.
+5. Je vais te donner mon CV entre ((( et ))), qui te donnera le contexte afin que tu puisses rédiger des éléments de légitimité pertinents. Ne mets rien qui ne soit pas en rapport avec mon offre.
+6. Tu dois mettre en valeur mon "Qui suis-je?" grâce à mon offre actuelle qui est entre les caractères [[[ et ]]]
+7. Les éléments doivent être rédigés de manière percutante, brute, visuelle, sans enrobage.
 
 DONNÉES :
 <<<
-Je m'appelle Kevin Dumont, et j'aide les développeurs freelance à trouver des clients grâce à LinkedIn.
+Je m’appelle Ruben Taieb et je suis expert LinkedIn pour les indépendants.
 
-En moins d'un an, j'ai transformé LinkedIn en machine à clients pour les devs.
+En 5 ans, j'ai exploré LinkedIn sous tous ses angles.
 
-- J'ai accompagné +180 freelances dans l'IT pour trouver des missions, vendre leurs SaaS ou faire de l'apport d'affaires.
-- J'ai généré +8 millions d'impressions LinkedIn en seulement 9 mois.
-- J'ai construit une audience de +9000 abonnés qualifiés dans la tech.
-- J'ai créé une formation LinkedIn dédiée aux développeurs, avec +180 élèves satisfaits.
-- J'optimise les profils LinkedIn pour convertir les vues en rendez-vous.
-- J'écris des posts efficaces avec l'IA pour maximiser la portée et l'engagement.
-- Je booste la visibilité des freelances tech grâce à des stratégies d'engagement ciblées.
-- J'ai une expertise concrète du terrain grâce à mon expérience de développeur JS / React chez Warner Bros. Discovery.
-- Je maîtrise le copywriting et la vente pour transformer la visibilité en chiffre d'affaires concret.
+- J'ai fait du Coaching LinkedIn 1:1.
+- J'ai accompagné +100 entreprises. (Back market, Amazon, Century21, Aircall, Unilever, Toshiba...)
+- J'ai pivoté en Agence de prospection. (450 comptes sous gestion & 1,5M d'invitations envoyées...)
+- J'ai donné +100 conférences LinkedIn.
+- J'ai formé +1000 personnes sur LinkedIn.
+- J'ai écrit +2000 publications pour des dirigeants.
+- J'ai fait +20 campagnes d'influence sur LinkedIn.
 
-En bref, je connais parfaitement les enjeux des freelances tech pour avoir été moi-même dans leurs chaussures, et je les aide à attirer les bons clients grâce à du contenu qui convertit.
+Et aujourd'hui, je vous partage tous mes secrets pour contrètement augmenter votre CA.
 >>>
 
 (((
@@ -106,15 +92,21 @@ ${offer.offerJson?.userInput?.steps}
 ]]]
 
 FORMAT ATTENDU :
+- Le retour doit être exactement comme dans l'exemple entre <<< et >>>, c'est à dire :
+  - commencer par 1 phrase séparée par un saut de ligne (ex: "Je m'appelle [Prenom Nom], et je suis spécilisé dans [domaine] pour [cible]")
+  - puis un saut de ligne,
+  - puis une phrase deuxième phrase ultra percutante qui montre de la crédibilité et légitimité par rapport à l'offre (ex: "En 8 mois, j'ai aidé 200+ freelances à faire de LinkedIn leur canal d'acquisition n°1")
+  - puis un saut de ligne,
+  - puis la liste dont chaque point commence par un "-",
+  - puis un saut de ligne,
+  - puis une phrase de conclusion ultra percutante et courte (ex: "En bref, ")
+  - Tu dois principalement donner des chiffres pour appuyer tes propos.  
 - Tu ne dois pas utiliser d'émojis.  
 - Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
-- Tu dois t'inspirer de la structure de l'exemple fourni entre <<< et >>> et du ton employé.
-- Tu dois impérativement faire attention à ne pas reprendre les éléments de l'exemple fourni entre <<< et >>>, seulement t'inspirer.  
-- Tu dois lister au moins 10 points pertinents.  
-- Tu dois principalement donner des chiffres pour appuyer tes propos, si c'est possible.  
+- Tu dois impérativement faire attention à ne pas reprendre les éléments de l'exemple fourni entre <<< et >>>, seulement copier la structure et d'inspirer du ton.  
+- Tu dois lister au moins 8 points pertinents.  
 - Tu dois faire des phrases courtes, concises et percutantes, sans manquer d'informations.  
-- Tu dois commencer les phrases par des chiffres quand c'est possible.
-- Reste le plus factuel possible en fonction de mon CV, n'invente pas.
-- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre <<< et >>>.  
+- Tu dois parler au passé le plus possible dans les points de la liste (Ex: "J'ai formé +200 freelance", "J'ai généré +8 millions d'impressions LinkedIn", "J'ai accompagné +180 freelances dans l'IT", "J'ai créé une formation LinkedIn dédiée aux développeurs")
+- Reste le plus factuel possible en fonction de mon CV, n'invente pas, par contre embellis.
 `;
 };
