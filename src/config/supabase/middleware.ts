@@ -14,7 +14,7 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   };
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname === "/dashboard") {
     return redirect("/dashboard/offers");
   }
 

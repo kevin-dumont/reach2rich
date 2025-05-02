@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { BookOpen, LifeBuoy, Plus, Send } from "lucide-react";
+import { BookOpen, LifeBuoy, Send, Package } from "lucide-react";
 
 import { NavMain } from "@/components/blocks/nav-main";
 import { NavSecondary } from "@/components/blocks/nav-secondary";
@@ -22,16 +22,14 @@ const data = {
   main: [
     {
       name: "Offres",
-      items: [
-        { name: "Créer mon offre", url: "/dashboard/offers", icon: Plus },
-      ],
+      items: [{ name: "Mes offres", url: "/dashboard/offers", icon: Package }],
     },
-    {
-      name: "Stratégie éditoriale",
-      items: [
-        { name: "Créer ma stratégie", url: "/dashboard/strategy", icon: Plus },
-      ],
-    },
+    // {
+    //   name: "Stratégie éditoriale",
+    //   items: [
+    //     { name: "Créer ma stratégie", url: "/dashboard/strategy", icon: Plus },
+    //   ],
+    // },
   ],
   navSecondary: [
     {

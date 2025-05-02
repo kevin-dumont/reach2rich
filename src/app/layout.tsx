@@ -2,7 +2,7 @@
 
 import { Inter } from "next/font/google";
 
-import { FormProvider } from "@/contexts/FormContext";
+import { FormProvider } from "@/contexts/form-context";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";

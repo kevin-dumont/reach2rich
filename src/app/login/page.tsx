@@ -32,7 +32,8 @@ export default function LoginPage() {
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Reach2Rich</CardTitle>
           <CardDescription className="text-muted-foreground">
-            Connectez-vous avec votre adresse email pour accéder à votre compte
+            Connectez-vous avec la même adresse email que vous avez utilisée
+            pour la méthode Reach2Rich.
           </CardDescription>
         </CardHeader>
 
