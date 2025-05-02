@@ -49,7 +49,9 @@ Tu dois procéder de la manière suivante :
 2. Identifie toutes les catégories aux questions. (Exemple : Paiement, déroulé, procédés, livrables, concurrences, modalités, comment le produit fonctionne, c'est à qui de faire quoi etc…)  
 3. Rédige une question en te mettant à la place du prospect, commence cette question par "Je…"  
 4. Formule une réponse concise et fournie qui se collerait parfaitement à ma façon de faire. (Je pourrais ensuite les modifier si nécessaires.)
+5. Tu trouveras l'offre pour laquelle tu dois générer les questions relatives entre [[[ et ]]] :
 
+DONNÉES :
 Voici un exemple de questions relatives à ma propre offre entre <<< et >>>.  
 <<<
 ➜ Si je veux arrêter le programme en cours de route, comment ça se passe ?  
@@ -98,7 +100,6 @@ Par prélèvement bancaire avec envoi automatique des factures par mail à chaqu
 Oui, jusqu'à 6 fois. Tu peux même commencer à payer jusqu'à 3 mois après avoir commencé le programme.
 >>>
 
-Voici l'offre pour laquelle tu dois générer les questions relatives entre [[[ et ]]] :
 [[[
 Qui suis-je ?
 ${offer.offerJson?.generated?.whoAmI}
@@ -122,8 +123,8 @@ ${offer.offerJson?.generated?.notIncluded}
 FORMAT ATTENDU :
 - Tu ne dois pas mettre d'émojis.
 - Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
-- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre [ et ].
+- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre <<< et >>>.
 - Tu dois impérativement t'inspirer de l'exemple mais ne pas le copier.  
 - Tu dois être exhaustif dans la description de manière percutante, concis mais descriptif.  
-- Tu dois faire des phrases courtes.  `;
+- Tu dois faire des phrases courtes.`;
 };
