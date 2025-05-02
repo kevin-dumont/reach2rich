@@ -24,7 +24,7 @@ export function StepSix() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="doneForYou">
-            Résultat de l&apos;étape 5 (Cette offre est faite pour vous si…)
+            Cette offre est faite pour vous si...
           </Label>
           <Textarea
             rows={12}

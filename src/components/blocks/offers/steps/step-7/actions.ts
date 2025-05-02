@@ -122,8 +122,9 @@ ${offer.offerJson?.generated?.notIncluded}
 
 FORMAT ATTENDU :
 - Tu ne dois pas mettre d'émojis.
+- Tu doit commencer chaque question par le symbole "➜"
 - Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
-- Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre <<< et >>>.
+- Le retour ne doit contenir que ce qui est demandé, exactement au même format que le texte entre <<< et >>>.
 - Tu dois impérativement t'inspirer de l'exemple mais ne pas le copier.  
 - Tu dois être exhaustif dans la description de manière percutante, concis mais descriptif.  
 - Tu dois faire des phrases courtes.`;

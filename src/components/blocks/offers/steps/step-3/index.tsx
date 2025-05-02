@@ -21,9 +21,7 @@ export function StepThree() {
     <form action={formAction}>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="whoAmI">
-            Résultat de l&apos;étape 2 (Qui suis-je ? )
-          </Label>
+          <Label htmlFor="whoAmI">Qui suis-je ?</Label>
           <Textarea
             rows={12}
             name="whoAmI"

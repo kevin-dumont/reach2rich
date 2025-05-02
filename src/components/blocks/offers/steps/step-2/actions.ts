@@ -11,7 +11,6 @@ export type StepTwoResponse = OfferError<{
 }>;
 
 const stepTwoSchema = z.object({
-  cv: z.string().min(50, "Le CV doit contenir au moins 50 caractères."),
   generatedSteps: z
     .string()
     .min(50, "Le résultat de l'étape 1 doit contenir au moins 50 caractères."),
@@ -21,10 +20,9 @@ export async function generateStepTwo(
   offer: Offer,
   formData: FormData
 ): Promise<StepTwoResponse> {
-  const cv = formData.get("cv") as string;
   const generatedSteps = formData.get("generatedSteps") as string;
 
-  const validationResult = stepTwoSchema.safeParse({ cv, generatedSteps });
+  const validationResult = stepTwoSchema.safeParse({ generatedSteps });
 
   if (!validationResult.success) {
     return {
@@ -34,7 +32,7 @@ export async function generateStepTwo(
 
   const inputs = merge([
     offer,
-    { offerJson: { userInput: { cv }, generated: { steps: generatedSteps } } },
+    { offerJson: { generated: { steps: generatedSteps } } },
   ]);
 
   return runPromptAndSaveOffer(

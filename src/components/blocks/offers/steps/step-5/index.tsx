@@ -24,7 +24,7 @@ export function StepFive() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="doneForYou">
-            Résultat de l&apos;étape 4 (Ce que ne comprend pas cette offre)
+            Ce que ne comprend pas cette offre :
           </Label>
           <Textarea
             rows={12}

@@ -21,9 +21,7 @@ export function StepNine() {
     <form action={formAction}>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="painPoints">
-            Résultat de l&apos;étape 8 (Tu te reconnais là dedans?)
-          </Label>
+          <Label htmlFor="painPoints">Tu te reconnais là dedans ?</Label>
           <Textarea
             rows={12}
             name="painPoints"

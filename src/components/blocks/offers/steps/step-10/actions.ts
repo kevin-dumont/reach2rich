@@ -56,7 +56,7 @@ Ton objectif est de transformer le contenu entre <<< et >>> en une section intit
 2. Utilise des phrases concrètes, visuelles, réalistes.  
 3. Dans le bloc "Tu remplis ce formulaire", mets l'accent sur l'accès à une opportunité réelle.  
 4. Le contenu des phrases doit être un calcul de rentabilité de l'action pour le bloc "Tu remplis ce formulaire".
-5. Tu vas respecter le format suivant entre [[[ et ]]] :
+5. Tu va respecter le format exact qui se trouve entre les caractères [[[ et ]]] :
 6. Tu dois appliquer ça à l'offre qui est entre <<< et >>>
 7. Tu trouveras un exemple complet de ce que je te demande entre ((( et ))) 
 
@@ -119,5 +119,6 @@ FORMAT ATTENDU :
 - Mets des points à la fin des phrases.  
 - Tu ne dois pas utiliser de markdown, pas de gras, ni de **, pas de souligné, pas de italique, pas de titres.
 - Le retour ne doit contenir que ce qui est demandé, au même format que le texte entre <<< et >>>.
+- Tu dois impérativement t'inspirer de l'exemple mais ne pas le copier.  
 `;
 }

@@ -11,11 +11,13 @@ const stepOneSchema = z.object({
   steps: z
     .string()
     .min(50, "Les étapes doivent contenir au moins 50 caractères."),
+  cv: z.string().min(200, "Le CV doit contenir au moins 200 caractères."),
 });
 
 export type StepOneResponse = OfferError<{
   offer?: string[];
   steps?: string[];
+  cv?: string[];
 }>;
 
 export async function generateStepOne(
@@ -24,8 +26,9 @@ export async function generateStepOne(
 ): Promise<StepOneResponse> {
   const offer = formData.get("offer") as string;
   const steps = formData.get("steps") as string;
+  const cv = formData.get("cv") as string;
 
-  const validationResult = stepOneSchema.safeParse({ offer, steps });
+  const validationResult = stepOneSchema.safeParse({ offer, steps, cv });
 
   if (!validationResult.success) {
     return {
@@ -35,7 +38,7 @@ export async function generateStepOne(
 
   const inputs = merge([
     _offer,
-    { offerJson: { userInput: { offer, steps } } },
+    { offerJson: { userInput: { offer, steps, cv } } },
   ]);
 
   return runPromptAndSaveOffer(

@@ -6,36 +6,23 @@ import { Label } from "@/components/ui/label";
 import { FormFooter } from "@/components/blocks/offers/form-footer";
 import { cn } from "@/lib/utils";
 import { FormMessage } from "@/components/blocks/offers/form-message";
-import { redirect } from "next/navigation";
-import { toast } from "sonner";
+
+import { useStepAction } from "@/hooks/use-step-action";
+
 const initialState: StepTenResponse = {};
 
 export function StepTen() {
   const { offer, setStep, isLoading } = useForm();
 
-  const [state, formAction, pending] = useActionState(
-    async (prevState: StepTenResponse, formData: FormData) => {
-      if (!offer) return prevState;
+  const onSubmit = useStepAction(generateStepTen);
 
-      const result = await generateStepTen(offer, formData);
-
-      if (result?.updatedOffer) {
-        toast.success("Offre créée avec succès");
-        redirect(`/dashboard/offers/${offer.id}`);
-      }
-
-      return result;
-    },
-    initialState
-  );
+  const [state, formAction, pending] = useActionState(onSubmit, initialState);
 
   return (
     <form action={formAction}>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="doNothing">
-            Résultat de l&apos;étape 9 (Si tu ne fais rien)
-          </Label>
+          <Label htmlFor="doNothing">Si tu ne fais rien :</Label>
           <Textarea
             rows={12}
             name="doNothing"

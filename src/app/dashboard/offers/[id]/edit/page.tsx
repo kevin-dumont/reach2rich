@@ -12,6 +12,7 @@ import { StepSeven } from "@/components/blocks/offers/steps/step-7";
 import { StepEight } from "@/components/blocks/offers/steps/step-8";
 import { StepNine } from "@/components/blocks/offers/steps/step-9";
 import { StepTen } from "@/components/blocks/offers/steps/step-10";
+import { StepEleven } from "@/components/blocks/offers/steps/step-11";
 
 import { useForm } from "@/contexts/form-context";
 import { cn } from "@/lib/utils";
@@ -36,6 +37,7 @@ export default function HomePage() {
         {step === 8 && <StepEight />}
         {step === 9 && <StepNine />}
         {step === 10 && <StepTen />}
+        {step === 11 && <StepEleven />}
       </Card>
       <Card className="col-span-4 p-6">
         <Stepper />
@@ -48,18 +50,17 @@ function Stepper() {
   const { step } = useForm();
 
   const steps = [
-    { number: 1, name: "Détails de l'offre" },
-    { number: 2, name: "Votre parcours" },
-    { number: 3, name: "Détails de l'offre" },
-    { number: 4, name: "Rédaction" },
-    {
-      number: 5,
-      name: "Questions des clients",
-    },
-    { number: 6, name: "Points de douleur" },
-    { number: 7, name: "Conversion" },
-    { number: 8, name: "Finalisation" },
-    { number: 9, name: "Achèvement" },
+    { number: 1, name: "Vos informations" },
+    { number: 2, name: "Le déroulé de l'offre" },
+    { number: 3, name: "Qui suis-je ?" },
+    { number: 4, name: "Ce qui est inclus" },
+    { number: 5, name: "Ce qui n'est pas inclus" },
+    { number: 6, name: "Pour vous si..." },
+    { number: 7, name: "Pour vous si..." },
+    { number: 8, name: "Les questions fréquentes" },
+    { number: 9, name: "Tu te reconnais ?" },
+    { number: 10, name: "Si tu ne fais rien" },
+    { number: 11, name: "Si tu remplis ce formulaire" },
   ];
 
   return (

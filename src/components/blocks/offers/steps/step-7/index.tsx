@@ -22,8 +22,7 @@ export function StepSeven() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="pourToiOuNon">
-            Résultat de l&apos;étape 6 (Cette offre n&apos;est pas faite pour
-            vous si…)
+            Cette offre n&apos;est pas faite pour vous si...
           </Label>
           <Textarea
             rows={12}

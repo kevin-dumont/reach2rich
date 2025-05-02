@@ -64,6 +64,20 @@ export function StepOne() {
           <FormMessage error={state.inputErrors?.steps} />
         </div>
 
+        <div>
+          <Label htmlFor="cv">Votre CV</Label>
+          <Textarea
+            rows={8}
+            name="cv"
+            loading={isLoading}
+            defaultValue={offer?.offerJson?.userInput?.cv}
+            className={cn("mt-2 min-h-60", {
+              "border-red-500": state?.inputErrors?.cv,
+            })}
+          />
+          <FormMessage error={state?.inputErrors?.cv} />
+        </div>
+
         <FormFooter
           pending={pending}
           isGenerated={!!offer?.offerJson?.generated?.steps}

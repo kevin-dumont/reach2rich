@@ -21,9 +21,7 @@ export function StepFour() {
     <form action={formAction}>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="included">
-            Résultat de l&apos;étape 3 (Ce que comprend ce programme)
-          </Label>
+          <Label htmlFor="included">Ce que comprend ce programme :</Label>
           <Textarea
             rows={12}
             name="included"

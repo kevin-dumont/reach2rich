@@ -21,7 +21,7 @@ export function StepEight() {
     <form action={formAction}>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="questions">Résultat de l&apos;étape 7 (FAQ)</Label>
+          <Label htmlFor="questions">Les questions fréquentes :</Label>
           <Textarea
             rows={12}
             name="FAQ"

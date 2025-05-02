@@ -24,7 +24,7 @@ export function StepTwo() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="generatedSteps">
-            Résultat de l&apos;étape 1 (Quel est le déroulé de l&apos;offre ? )
+            Voici le déroulé de l&apos;offre :
           </Label>
           <Textarea
             rows={8}
@@ -36,20 +36,6 @@ export function StepTwo() {
             })}
           />
           <FormMessage error={state?.inputErrors?.generatedSteps} />
-        </div>
-
-        <div>
-          <Label htmlFor="cv">Votre CV</Label>
-          <Textarea
-            rows={8}
-            name="cv"
-            loading={isLoading}
-            defaultValue={offer?.offerJson?.userInput?.cv}
-            className={cn("mt-2 min-h-60", {
-              "border-red-500": state?.inputErrors?.cv,
-            })}
-          />
-          <FormMessage error={state?.inputErrors?.cv} />
         </div>
 
         <FormFooter
