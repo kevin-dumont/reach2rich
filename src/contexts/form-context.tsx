@@ -33,7 +33,9 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
       setIsLoading(false);
     };
 
-    fetchOffer();
+    if (id) {
+      fetchOffer();
+    }
   }, [id]);
 
   return (

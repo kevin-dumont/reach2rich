@@ -14,35 +14,45 @@ import { StepNine } from "@/components/blocks/offers/steps/step-9";
 import { StepTen } from "@/components/blocks/offers/steps/step-10";
 import { StepEleven } from "@/components/blocks/offers/steps/step-11";
 
-import { useForm } from "@/contexts/form-context";
+import { FormProvider, useForm } from "@/contexts/form-context";
 import { cn } from "@/lib/utils";
 
 const TOTAL_STEPS = 11;
 
 export default function HomePage() {
+  return (
+    <FormProvider>
+      <div className="grid grid-cols-12 gap-4">
+        <Card className="col-span-8 p-6">
+          <FormContent />
+        </Card>
+        <Card className="col-span-4 p-6">
+          <Stepper />
+        </Card>
+      </div>
+    </FormProvider>
+  );
+}
+
+function FormContent() {
   const { step } = useForm();
 
   return (
-    <div className="grid grid-cols-12 gap-4">
-      <Card className="col-span-8 p-6">
-        <FormProgress currentStep={step} totalSteps={TOTAL_STEPS} />
+    <>
+      <FormProgress currentStep={step} totalSteps={TOTAL_STEPS} />
 
-        {step === 1 && <StepOne />}
-        {step === 2 && <StepTwo />}
-        {step === 3 && <StepThree />}
-        {step === 4 && <StepFour />}
-        {step === 5 && <StepFive />}
-        {step === 6 && <StepSix />}
-        {step === 7 && <StepSeven />}
-        {step === 8 && <StepEight />}
-        {step === 9 && <StepNine />}
-        {step === 10 && <StepTen />}
-        {step === 11 && <StepEleven />}
-      </Card>
-      <Card className="col-span-4 p-6">
-        <Stepper />
-      </Card>
-    </div>
+      {step === 1 && <StepOne />}
+      {step === 2 && <StepTwo />}
+      {step === 3 && <StepThree />}
+      {step === 4 && <StepFour />}
+      {step === 5 && <StepFive />}
+      {step === 6 && <StepSix />}
+      {step === 7 && <StepSeven />}
+      {step === 8 && <StepEight />}
+      {step === 9 && <StepNine />}
+      {step === 10 && <StepTen />}
+      {step === 11 && <StepEleven />}
+    </>
   );
 }
 

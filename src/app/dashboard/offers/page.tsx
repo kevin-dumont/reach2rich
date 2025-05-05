@@ -31,7 +31,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/useAuth";
 import CreateOfferModal from "@/components/blocks/offers/create-offer-modal";
 
-export default function ListeOffres() {
+export default function OffersList() {
   const { user } = useAuth();
   const [offers, setOffers] = useState<Offer[]>([]);
   const [newOfferName, setNewOfferName] = useState("");

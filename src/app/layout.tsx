@@ -2,7 +2,6 @@
 
 import { Inter } from "next/font/google";
 
-import { FormProvider } from "@/contexts/form-context";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
@@ -18,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className)}>
-        <FormProvider>{children}</FormProvider>
+        {children}
         <Toaster />
       </body>
     </html>
