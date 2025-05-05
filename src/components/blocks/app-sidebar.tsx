@@ -5,8 +5,6 @@ import {
   BookOpen,
   LifeBuoy,
   Package,
-  File,
-  FilePlus,
   Notebook,
   LibraryBig,
 } from "lucide-react";
