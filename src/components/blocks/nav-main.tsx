@@ -9,6 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export function NavMain({
   menus,
@@ -17,7 +18,7 @@ export function NavMain({
     name: string;
     items: {
       name: string;
-      url: string;
+      url?: string;
       icon: LucideIcon;
     }[];
   }[];
@@ -34,10 +35,22 @@ export function NavMain({
             {menu.items.map((item) => (
               <SidebarMenuItem key={item.name}>
                 <SidebarMenuButton asChild>
-                  <a href={item.url}>
-                    <item.icon />
-                    <span>{item.name}</span>
-                  </a>
+                  {item.url ? (
+                    <Link href={item.url}>
+                      <item.icon />
+                      <span>{item.name}</span>
+                    </Link>
+                  ) : (
+                    <div className="opacity-50 hover:bg-none">
+                      <item.icon />
+                      <span className="flex items-end gap-1">
+                        <span>{item.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          (À venir)
+                        </span>
+                      </span>
+                    </div>
+                  )}
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
