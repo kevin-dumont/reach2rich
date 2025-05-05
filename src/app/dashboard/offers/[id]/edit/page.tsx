@@ -56,7 +56,7 @@ function Stepper() {
     { number: 4, name: "Ce qui est inclus" },
     { number: 5, name: "Ce qui n'est pas inclus" },
     { number: 6, name: "Pour vous si..." },
-    { number: 7, name: "Pour vous si..." },
+    { number: 7, name: "Pas pour vous si..." },
     { number: 8, name: "Les questions fréquentes" },
     { number: 9, name: "Tu te reconnais ?" },
     { number: 10, name: "Si tu ne fais rien" },
@@ -64,20 +64,32 @@ function Stepper() {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
-      {steps.map((s) => (
-        <div key={s.number} className="flex items-center gap-4">
-          <div
-            className={cn(
-              "w-10 h-10 rounded-full flex items-center justify-center transition-colors cursor-pointer bg-accent",
-              {
-                "bg-primary text-white": step === s.number,
-              }
+    <div className="flex flex-col relative">
+      {steps.map((s, index) => (
+        <div key={s.number} className="flex gap-4">
+          <div className="flex flex-col items-center">
+            <div
+              className={cn(
+                "w-10 h-10 rounded-full flex items-center justify-center transition-colors cursor-pointer",
+                {
+                  "bg-primary text-white": step === s.number,
+                  "bg-black text-white": step > s.number,
+                  "bg-accent": step < s.number,
+                }
+              )}
+            >
+              {s.number}
+            </div>
+            {index < steps.length - 1 && (
+              <div
+                className={cn("h-5 border-l-4", {
+                  "border-black": step > s.number,
+                  "border-accent": step <= s.number,
+                })}
+              />
             )}
-          >
-            {s.number}
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col pt-2">
             <span
               className={cn("text-sm", {
                 "font-semibold": step === s.number,

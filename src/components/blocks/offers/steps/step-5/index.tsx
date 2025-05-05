@@ -19,6 +19,11 @@ export function StepFive() {
 
   const [state, formAction, pending] = useActionState(onSubmit, initialState);
 
+  console.log(
+    "offer?.offerJson?.generated.doneForYou",
+    offer?.offerJson?.generated.doneForYou
+  );
+
   return (
     <form action={formAction}>
       <div className="space-y-4">
