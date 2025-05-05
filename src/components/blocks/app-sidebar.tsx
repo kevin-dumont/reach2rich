@@ -34,7 +34,7 @@ const data = {
   navSecondary: [
     {
       title: "Formation",
-      url: "https://formation-linkedin.kevindumont.fr/school/course/reach2rich-v2",
+      url: "https://formation-linkedin.kevindumont.fr/school/course/reach2rich/lecture/6589078",
       icon: BookOpen,
     },
     {
@@ -42,11 +42,11 @@ const data = {
       url: "https://discord.gg/vXDD9mSD4K",
       icon: LifeBuoy,
     },
-    {
-      title: "Feedback",
-      url: "https://senja.io/p/kevin-dumont/r/CHFLyy",
-      icon: Send,
-    },
+    // {
+    //   title: "Feedback",
+    //   url: "https://senja.io/p/kevin-dumont/r/CHFLyy",
+    //   icon: Send,
+    // },
   ],
 };
 
