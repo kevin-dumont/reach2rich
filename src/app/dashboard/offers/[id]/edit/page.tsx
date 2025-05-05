@@ -47,44 +47,87 @@ export default function HomePage() {
 }
 
 function Stepper() {
-  const { step } = useForm();
+  const { step, setStep, offer } = useForm();
 
   const steps = [
-    { number: 1, name: "Vos informations" },
-    { number: 2, name: "Le déroulé de l'offre" },
-    { number: 3, name: "Qui suis-je ?" },
-    { number: 4, name: "Ce qui est inclus" },
-    { number: 5, name: "Ce qui n'est pas inclus" },
-    { number: 6, name: "Pour vous si..." },
-    { number: 7, name: "Pas pour vous si..." },
-    { number: 8, name: "Les questions fréquentes" },
-    { number: 9, name: "Tu te reconnais ?" },
-    { number: 10, name: "Si tu ne fais rien" },
-    { number: 11, name: "Si tu remplis ce formulaire" },
+    { name: "Vos informations" },
+    {
+      name: "Le déroulé de l'offre",
+      canGoToStep: () => !!offer?.offerJson?.generated?.steps,
+    },
+    {
+      name: "Qui suis-je ?",
+      canGoToStep: () => !!offer?.offerJson?.generated?.whoAmI,
+    },
+    {
+      name: "Ce qui est inclus",
+      canGoToStep: () => !!offer?.offerJson?.generated?.included,
+    },
+    {
+      name: "Ce qui n'est pas inclus",
+      canGoToStep: () => !!offer?.offerJson?.generated?.notIncluded,
+    },
+    {
+      name: "Pour vous si...",
+      canGoToStep: () => !!offer?.offerJson?.generated?.doneForYou,
+    },
+    {
+      name: "Pas pour vous si...",
+      canGoToStep: () => !!offer?.offerJson?.generated?.notDoneForYou,
+    },
+    {
+      name: "Les questions fréquentes",
+      canGoToStep: () => !!offer?.offerJson?.generated?.FAQ,
+    },
+    {
+      name: "Tu te reconnais ?",
+      canGoToStep: () => !!offer?.offerJson?.generated?.painPoints,
+    },
+    {
+      name: "Si tu ne fais rien",
+      canGoToStep: () => !!offer?.offerJson?.generated?.doNothing,
+    },
+    {
+      name: "Si tu remplis ce formulaire",
+      canGoToStep: () => !!offer?.offerJson?.generated?.fillTheForm,
+    },
   ];
+
+  const handleStepClick = (
+    stepIndex: number,
+    step: { canGoToStep?: () => boolean }
+  ) => {
+    if (!step.canGoToStep || step.canGoToStep()) {
+      setStep(stepIndex);
+    }
+  };
 
   return (
     <div className="flex flex-col relative">
       {steps.map((s, index) => (
-        <div key={s.number} className="flex gap-4">
+        <div
+          key={s.name}
+          className="flex gap-4 cursor-pointer"
+          onClick={() => handleStepClick(index + 1, s)}
+        >
           <div className="flex flex-col items-center">
             <div
               className={cn(
-                "w-10 h-10 rounded-full flex items-center justify-center transition-colors cursor-pointer",
+                "w-10 h-10 rounded-full flex items-center justify-center transition-colors",
                 {
-                  "bg-primary text-white": step === s.number,
-                  "bg-black text-white": step > s.number,
-                  "bg-accent": step < s.number,
+                  "bg-primary text-white": step === index + 1,
+                  "bg-black text-white": step > index + 1,
+                  "bg-accent": step < index + 1,
                 }
               )}
             >
-              {s.number}
+              {index + 1}
             </div>
             {index < steps.length - 1 && (
               <div
                 className={cn("h-5 border-l-4", {
-                  "border-black": step > s.number,
-                  "border-accent": step <= s.number,
+                  "border-black": step > index + 1,
+                  "border-accent": step <= index + 1,
                 })}
               />
             )}
@@ -92,7 +135,7 @@ function Stepper() {
           <div className="flex flex-col pt-2">
             <span
               className={cn("text-sm", {
-                "font-semibold": step === s.number,
+                "font-semibold": step === index + 1,
               })}
             >
               {s.name}
