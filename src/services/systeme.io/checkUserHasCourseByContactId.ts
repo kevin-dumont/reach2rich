@@ -27,7 +27,7 @@ interface ApiResponse {
   items: EnrollmentItem[];
 }
 
-const Reach2RichCourseId = 416578;
+const Reach2RichCourseId = 412356;
 
 export const checkUserHasCourseByContactId = async (
   contactId: string
